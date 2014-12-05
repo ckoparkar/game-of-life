@@ -1,10 +1,6 @@
 require 'pry'
 
 class GameOfLife
-  def self.hello
-    "hello"
-  end
-
   def initialize(args)
     @data = args[:data]
   end
@@ -18,7 +14,7 @@ class GameOfLife
         when is_dead?(x, y)
           t << evolve_dead(x, y)
         else
-          t << @data[x][y]
+          t << evolve_live(x, y)
         end
       end
       data << t
@@ -28,6 +24,13 @@ class GameOfLife
 
   def evolve_dead(x, y)
     live_neighbors(neighbors(x, y)) == 3 ? 'x' : '.'
+  end
+
+  def evolve_live(x, y)
+    case live_neighbors(neighbors(x, y))
+    when 0...2
+      return '.'
+    end
   end
 
   def is_dead?(x, y)
