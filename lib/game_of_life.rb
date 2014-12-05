@@ -30,6 +30,8 @@ class GameOfLife
     case live_neighbors(neighbors(x, y))
     when 0...2
       return '.'
+    when 2,3
+      return 'x'
     end
   end
 

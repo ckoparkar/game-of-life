@@ -5,16 +5,32 @@ Feature: Evolving a living cell
 
   Scenario: Living cell with 0 neighbors dies
     Given the following setup
-      | . | . | . |
-      | . | x | . |
-      | . | . | . |
+    | . | . | . |
+    | . | x | . |
+    | . | . | . |
     When I evolve the board
     Then the center cell should be dead
 
   Scenario: Living cell with 1 neighbor dies
     Given the following setup
-      | . | x | . |
-      | . | x | . |
-      | . | . | . |
+    | . | x | . |
+    | . | x | . |
+    | . | . | . |
     When I evolve the board
     Then the center cell should be dead
+
+  Scenario: Living cell with 2 neighbors lives
+    Given the following setup
+    | . | x | . |
+    | . | x | x |
+    | . | . | . |
+    When I evolve the board
+    Then the center cell should be alive
+
+  Scenario: Living cell with 3 neighbors lives
+    Given the following setup
+    | x | x | x |
+    | . | x | . |
+    | . | . | . |
+    When I evolve the board
+    Then the center cell should be alive
