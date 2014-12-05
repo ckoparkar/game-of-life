@@ -34,6 +34,10 @@ class GameOfLife
     @data[x][y] == '.'
   end
 
+  def is_alive?(x, y)
+    @data[x][y] == 'x'
+  end
+
   private
 
   def get_range(n, limit)

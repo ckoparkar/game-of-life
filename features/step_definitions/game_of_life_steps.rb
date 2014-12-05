@@ -19,5 +19,9 @@ When(/^I evolve the board$/) do
 end
 
 Then(/^the center cell should be dead$/) do
-  @game.is_dead?(@data.size/2, @data[0].size/2)
+  expect(@game.is_dead?(@data.size/2, @data[0].size/2)).to be true
+end
+
+Then(/^the center cell should be alive$/) do
+  expect(@game.is_alive?(@data.size/2, @data[0].size/2)).to be true
 end
