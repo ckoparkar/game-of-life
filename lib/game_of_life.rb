@@ -32,6 +32,8 @@ class GameOfLife
       return '.'
     when 2,3
       return 'x'
+    when 4..(10/0.0)
+      return '.'
     end
   end
 
