@@ -3,7 +3,7 @@
 #
 
 ## REQUIRE YOUR OWN CLASS HERE ##
-require_relative 'lib/game_of_life.rb'
+require_relative 'game_of_life.rb'
 require 'shoes'
 W = 20 # cell width
 
