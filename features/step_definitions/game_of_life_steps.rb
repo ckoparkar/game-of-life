@@ -10,8 +10,8 @@ Then(/^I should see "(.*?)"$/) do |arg1|
 end
 
 Given(/^the following setup$/) do |table|
-  @data = table.raw
-  @game = GameOfLife.new(data: @data)
+  @grid = table.raw
+  @game = GameOfLife.new(grid: @grid)
 end
 
 When(/^I evolve the board$/) do
@@ -19,9 +19,13 @@ When(/^I evolve the board$/) do
 end
 
 Then(/^the center cell should be dead$/) do
-  expect(@game.is_dead?(@data.size/2, @data[0].size/2)).to be true
+  expect(@game.is_dead?(@grid.size/2, @grid[0].size/2)).to be true
 end
 
 Then(/^the center cell should be alive$/) do
-  expect(@game.is_alive?(@data.size/2, @data[0].size/2)).to be true
+  expect(@game.is_alive?(@grid.size/2, @grid[0].size/2)).to be true
+end
+
+Then(/^I should see the following board$/) do |table|
+  @game.grid == table
 end

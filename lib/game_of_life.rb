@@ -1,15 +1,18 @@
 require 'pry'
 
 class GameOfLife
+
+  attr_reader :grid
+
   def initialize(args)
-    @data = args[:data]
+    @grid = args[:grid]
   end
 
   def evolve_game
-    data = []
-    for x in (0...@data.size).to_a do
+    grid = []
+    for x in (0...@grid.size).to_a do
       t = []
-      for y in (0...@data[0].size).to_a do
+      for y in (0...@grid[0].size).to_a do
         case
         when is_dead?(x, y)
           t << evolve_dead(x, y)
@@ -17,9 +20,9 @@ class GameOfLife
           t << evolve_live(x, y)
         end
       end
-      data << t
+      grid << t
     end
-    @data = data
+    @grid = grid
   end
 
   def evolve_dead(x, y)
@@ -38,11 +41,11 @@ class GameOfLife
   end
 
   def is_dead?(x, y)
-    @data[x][y] == '.'
+    @grid[x][y] == '.'
   end
 
   def is_alive?(x, y)
-    @data[x][y] == 'x'
+    @grid[x][y] == 'x'
   end
 
   private
@@ -62,23 +65,25 @@ class GameOfLife
 
   def neighbors(x, y)
     n = []
-    x1, x2 = get_range(x, @data.size)
-    y1, y2 = get_range(y, @data[0].size)
+    x1, x2 = get_range(x, @grid.size)
+    y1, y2 = get_range(y, @grid[0].size)
     for r in (x1..x2).to_a do
       for c in (y1..y2).to_a do
-        n << @data[r][c]
+        n << @grid[r][c]
       end
     end
-    n.delete_at n.index(@data[x][y])
+    n.delete_at n.index(@grid[x][y])
     n
   end
 
 end
 
-# data = [['.', '.', '.'],
-#         ['.', '.', '.'],
-#         ['.', '.', '.']]
+# grid = [['.', '.', '.','.', '.'],
+#         ['.', '.', '.','.', '.'],
+#         ['.', 'x', 'x','x', '.'],
+#         ['.', '.', '.','.', '.'],
+#         ['.', '.', '.','.', '.']]
 
-# game = GameOfLife.new(data: data)
+# game = GameOfLife.new(grid: grid)
 # p game.evolve_game
 # binding.pry
