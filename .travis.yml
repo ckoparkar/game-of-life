@@ -4,3 +4,6 @@ rvm:
 gemfile: Gemfile
 notifications:
   email: false
+addons:
+  code_climate:
+    repo_token: 5f3f868eea7bca56440fb456ddf2c1d0001722977f6f35bcef58a98a856ad21c
