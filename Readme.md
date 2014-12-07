@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.org/cskksc/game_of_life.svg?branch=master)](https://travis-ci.org/cskksc/game_of_life)
 [![Code Climate](https://codeclimate.com/github/cskksc/game_of_life/badges/gpa.svg)](https://codeclimate.com/github/cskksc/game_of_life)
 [![Test Coverage](https://codeclimate.com/github/cskksc/game_of_life/badges/coverage.svg)](https://codeclimate.com/github/cskksc/game_of_life)
-An implementation of Game of Life in Ruby.
 
+An implementation of Game of Life in Ruby.
+==========================================
 Wiki: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 Project started to learn BDD.
