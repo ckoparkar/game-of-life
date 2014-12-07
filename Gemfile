@@ -8,3 +8,5 @@ gem 'rspec'
 gem 'cucumber'
 gem 'autotest'
 gem 'pry'
+
+gem "codeclimate-test-reporter", group: :test, require: nil
