@@ -11,3 +11,5 @@ gem 'pry'
 
 gem 'watchr'
 gem "codeclimate-test-reporter", group: :test, require: nil
+
+gem 'shoes', '~> 4.0.0.pre2'
