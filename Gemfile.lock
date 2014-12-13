@@ -44,6 +44,7 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.6.0)
+    watchr (0.7)
 
 PLATFORMS
   ruby
@@ -56,3 +57,4 @@ DEPENDENCIES
   rake
   rspec
   simplecov
+  watchr

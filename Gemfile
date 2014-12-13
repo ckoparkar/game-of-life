@@ -9,4 +9,5 @@ gem 'cucumber'
 gem 'autotest'
 gem 'pry'
 
+gem 'watchr'
 gem "codeclimate-test-reporter", group: :test, require: nil
