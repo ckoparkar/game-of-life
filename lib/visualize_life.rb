@@ -1,9 +1,21 @@
 require_relative 'game_of_life.rb'
 require 'shoes'
 
-class World
+class Cell
+
   WIDTH = 15
 
+  def initialize(args)
+    @x = args[:x]
+    @y = args[:y]
+    @app = args[:app]
+
+    @shoes_cell = @app.rect(left: WIDTH * @y, top: WIDTH * @x, width: WIDTH)
+    @shoes_cell.style(fill: '#fff')
+  end
+end
+
+class World
   def initialize(args)
     @board = []
     @width = args[:width]
@@ -15,9 +27,7 @@ class World
     @height.times do |y|
       @board[y] = []
       @width.times do |x|
-        cell =  @app.rect(left: WIDTH * y, top: WIDTH * x, width: WIDTH)
-        cell.style(fill: '#fff')
-        @board[y][x] = x
+        @board[y][x] = Cell.new(y: y, x: x, app: @app)
       end
     end
   end
