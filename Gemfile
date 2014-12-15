@@ -1,5 +1,5 @@
 # A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'rake'
 gem 'simplecov'
@@ -10,6 +10,6 @@ gem 'autotest'
 gem 'pry'
 
 gem 'watchr'
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'codeclimate-test-reporter', group: :test, require: nil
 
 gem 'shoes', '~> 4.0.0.pre2'
