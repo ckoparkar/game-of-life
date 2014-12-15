@@ -54,9 +54,9 @@ Shoes.app title: 'Game of Life', width: 800, height: 800 do
 
   gb = stack
   @n = para(top: 40, left: 5)
-  @start = link('start'){ gb.clear{show_cells} }
-  @stop = link('stop'){ @e.stop }
-  @reset = link('reset'){
+  @start = link('start', stroke: green){ gb.clear{show_cells} }
+  @stop = link('stop', stroke: red){ @e.stop }
+  @reset = link('reset', stroke: black){
     @e.stop
     gb.clear{ draw_grid }
     @n.text = ''
