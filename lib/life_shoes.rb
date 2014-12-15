@@ -1,33 +1,56 @@
 require_relative 'game_of_life.rb'
 require 'shoes'
-W = 20 # cell width
+W = 15 # cell width
+HEIGHT = 40
+WIDTH = 40
 
-Shoes.app :title => 'Game of Life'do
-  background khaki
+$grid = []
+HEIGHT.times do
+  $grid << Array.new(WIDTH, '.')
+end
+
+Shoes.app title: 'Game of Life', width: 800, height: 620 do
   stroke black
 
+  def draw_grid
+    @buttons = []
+    HEIGHT.times do |y|
+      @buttons[y] = []
+      WIDTH.times do |x|
+        @buttons[y][x] = rect(top: W * y, left: W * x, width: W, fill: white)
+        @buttons[y][x].click{toggle_state(y,x)}
+      end
+    end
+  end
+
+  def toggle_state(y, x)
+    $grid[y][x] = $grid[y][x] == 'x' ? '.' : 'x'
+    @buttons[y][x].style(fill: $grid[y][x] == 'x' ? green : white)
+  end
+
   def initialize_cells(life)
-    @height = life.size
-    @width = life.first.size
-    @cells = Array.new(@height){Array.new @width}
-    @height.times{|j| @width.times{|i| @cells[j][i] = rect 100+W*i, 50+W*j, W, W, :fill => white}}
+    @cells = Array.new(HEIGHT){Array.new WIDTH}
+    HEIGHT.times{|j| WIDTH.times{|i| @cells[j][i] = rect 100+W*i, 50+W*j, W, W, :fill => white}}
     @initialized = true
   end
 
   def show_cells
-    ## require_file based on pattern
-    require_relative '../patterns/gosper_glider_gun.rb'
     game = GameOfLife.new(grid: $grid)
     @e = every 1 do |n|
       @n.text = "Generation: #{n}"
       life = game.evolve_game
       @initialized ||= initialize_cells(life)
-      @height.times{|j| @width.times{|i| @cells[j][i].style :fill => (life[j][i] == '.' ? white : green)}}
+      HEIGHT.times do |j|
+        WIDTH.times do |i|
+          @cells[j][i].style :fill => (life[j][i] == '.' ? white : green)
+        end
+      end
     end
   end
 
   gb = stack
   para link('start'){gb.clear{show_cells}}
   para link('stop'){@e.stop}
+  gb.clear{draw_grid}
   @n = para
 end
