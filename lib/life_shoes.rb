@@ -9,7 +9,7 @@ HEIGHT.times do
   $grid << Array.new(WIDTH, '.')
 end
 
-Shoes.app title: 'Game of Life', width: 800, height: 800 do
+Shoes.app title: 'Game of Life', width: WIDTH * 16.5, height: HEIGHT * 17.5 do
   stroke black
 
   def draw_grid
@@ -17,7 +17,7 @@ Shoes.app title: 'Game of Life', width: 800, height: 800 do
     HEIGHT.times do |y|
       @buttons[y] = []
       WIDTH.times do |x|
-        @buttons[y][x] = rect(top: 100 + W * y, left: 50 + W * x, width: W, fill: white)
+        @buttons[y][x] = rect(top: 70 + W * y, left: 20 + W * x, width: W, fill: white)
         @buttons[y][x].click{toggle_state(y,x)}
       end
     end
@@ -32,7 +32,7 @@ Shoes.app title: 'Game of Life', width: 800, height: 800 do
     @cells = Array.new(HEIGHT){Array.new WIDTH}
     HEIGHT.times do |j|
       WIDTH.times do |i|
-        @cells[j][i] = rect(top: 100 + W * j, left: 50 + W * i, width: W, fill: white)
+        @cells[j][i] = rect(top: 70 + W * j, left: 20 + W * i, width: W, fill: white)
       end
     end
     @initialized = true
@@ -41,7 +41,7 @@ Shoes.app title: 'Game of Life', width: 800, height: 800 do
   def show_cells
     game = GameOfLife.new(grid: $grid)
     @e = every 1 do |n|
-      @n.text = "Generation: #{n}"
+     @n.text = "Generation: #{n}"
       life = game.evolve_game
       @initialized ||= initialize_cells(life)
       HEIGHT.times do |j|
