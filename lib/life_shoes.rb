@@ -53,13 +53,16 @@ Shoes.app title: 'Game of Life', width: 800, height: 800 do
   end
 
   gb = stack
-  @n = para
-  gb.clear{ draw_grid }
-  para link('start'){ gb.clear{show_cells} }
-  para link('stop'){ @e.stop }
-  para link('reset'){
+  @n = para(top: 40, left: 5)
+  @start = link('start'){ gb.clear{show_cells} }
+  @stop = link('stop'){ @e.stop }
+  @reset = link('reset'){
     @e.stop
     gb.clear{ draw_grid }
     @n.text = ''
   }
+  gb.clear{ draw_grid }
+  para(@start, top: 10, left: 5)
+  para(@stop, top: 10, left: 50)
+  para(@reset, top: 10, left: 95)
 end
