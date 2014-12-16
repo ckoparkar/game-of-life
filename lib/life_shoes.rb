@@ -40,13 +40,13 @@ Shoes.app title: 'Game of Life', width: WIDTH * 16.5, height: HEIGHT * 17.5 do
 
   def show_cells
     game = GameOfLife.new(grid: $grid)
-    @e = every 1 do |n|
+    @e = every 1/20.0 do |n|
      @n.text = "Generation: #{n}"
       life = game.evolve_game
       @initialized ||= initialize_cells(life)
       HEIGHT.times do |j|
         WIDTH.times do |i|
-          @cells[j][i].style :fill => (life[j][i] == '.' ? white : green)
+          @cells[j][i].style(fill: life[j][i] == '.' ? white : green)
         end
       end
     end
