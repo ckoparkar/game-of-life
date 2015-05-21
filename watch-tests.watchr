@@ -1,6 +1,6 @@
 ENV["WATCHR"] = "1"
 system 'clear'
-
+puts "hello"
 def run(cmd)
   `#{cmd}`
 end
